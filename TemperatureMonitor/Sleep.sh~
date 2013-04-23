@@ -1,0 +1,19 @@
+#!/usr/local/bin/bash
+
+
+process=`ps -auxf | sort -nr -k 3 | awk '$3 >1' | awk '{print $2;}'`
+idlepid=`ps auxf | awk '$11 ~/\[idle\]/' | awk '{print $2;}'`
+xorgpid=`top -b | grep Xorg | cut -d ' ' -f 2`
+ourpid=`top -b | grep temp_monitor | cut -d ' ' -f 2`
+
+for i in $process
+
+do
+	if [ $i -ne $idlepid ] && [ $i -ne $xorgpid ] && [$i -ne $ourpid ]
+	then
+		kill -STOP $i
+		echo $i >> sleeping
+	fi
+done
+
+

@@ -1,0 +1,3 @@
+#!/bin/sh
+cd /root/Desktop/code
+gnome-terminal -x "/root/Desktop/Temperature Monitor/temp_monitor"

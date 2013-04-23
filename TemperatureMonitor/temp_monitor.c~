@@ -1,0 +1,29 @@
+#include<unistd.h>
+#include <stdio.h>
+int main(){
+	system("/usr/local/bin/bash ./FreqLevels.sh");
+	sleep(2);
+	
+	int pid=fork();
+	if (pid)
+	{
+		while(1)
+		{
+			system("/usr/local/bin/bash ./FrequencyScale.sh");
+			//printf("Shravan\n");
+			sleep(15);
+		}
+	}
+	else
+	{
+		while(1)
+		{
+			system("/usr/local/bin/bash ./WakeUp.sh");
+			//printf("Rocks\n");
+			sleep(1);			
+		}
+	}
+	
+	//system("/usr/local/bin/bash ./temp.sh");
+
+}
